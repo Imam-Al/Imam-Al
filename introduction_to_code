@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petualangan Pemrograman Pertamamu!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Chosen Palette: Warm Neutrals with Soft Teal Accent -->
+    <!-- Application Structure Plan: A single-page, vertical scrolling narrative that follows the original presentation's learning path. The structure is broken into thematic sections: Intro, What is Programming (analogy), Languages (interactive tabs), First Code (simulated editor), Real World Examples (interactive grid), and Why Learn. This linear flow is best for beginners who need a guided introduction, while interactive elements within each section prevent passive scrolling and encourage engagement. -->
+    <!-- Visualization & Content Choices: 1. Core Concept (What is Programming): Goal=Inform. Method=Side-by-side HTML/CSS cards (Recipe vs Code) for a clear visual analogy. Interaction=None, focus is on the metaphor. 2. Languages: Goal=Organize/Compare. Method=Tabbed interface. Interaction=JS-powered tabs to reveal content, making it less overwhelming than a long list. 3. Code Example: Goal=Demonstrate. Method=Simulated code editor and console. Interaction=JS-powered 'Run' button provides a safe, hands-on feel. 4. Examples: Goal=Inform/Organize. Method=Interactive HTML/CSS grid. Interaction=Click-to-reveal text, making exploration self-paced. No charts needed for this topic. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #fdfbf7;
+        color: #4a4a4a;
+      }
+      .accent-color {
+        color: #2c7a7b;
+      }
+      .bg-accent-color {
+        background-color: #2c7a7b;
+      }
+      .border-accent-color {
+        border-color: #2c7a7b;
+      }
+      .nav-link {
+        transition: color 0.3s;
+      }
+      .nav-link:hover {
+        color: #2c7a7b;
+      }
+      .tab-btn.active {
+        background-color: #2c7a7b;
+        color: white;
+      }
+      .code-block {
+        background-color: #2d3748;
+        color: #e2e8f0;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .output-block {
+        background-color: #1a202c;
+        color: #a0aec0;
+        font-family: "Courier New", Courier, monospace;
+        min-height: 50px;
+      }
+      .example-card .details {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+      }
+      .example-card.open .details {
+        max-height: 200px;
+      }
+      /* New CSS for animations */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .animate-on-scroll.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .animate-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .animate-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .animate-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .animate-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .animate-delay-5 {
+        transition-delay: 0.5s;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="text-xl font-bold accent-color">Dunia Kode</div>
+        <div class="hidden md:flex space-x-8">
+          <a href="#apa-itu" class="nav-link font-medium">Apa Itu?</a>
+          <a href="#bahasa" class="nav-link font-medium">Bahasa</a>
+          <a href="#coba-kode" class="nav-link font-medium">Coba Kode</a>
+          <a href="#contoh" class="nav-link font-medium">Contoh Nyata</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="hero" class="text-center py-20 px-6 bg-white">
+        <div class="container mx-auto">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-on-scroll">
+            Mulai Petualangan <span class="accent-color">Pemrogramanmu!</span>
+          </h1>
+          <p
+            class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600 animate-on-scroll animate-delay-1"
+          >
+            Pernah penasaran bagaimana game dan aplikasi dibuat? Yuk, kita cari
+            tahu rahasianya bersama!
+          </p>
+        </div>
+      </section>
+
+      <section id="apa-itu" class="py-20 px-6 animate-on-scroll">
+        <div class="container mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">
+              Apa Sih Pemrograman Itu?
+            </h2>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Ini lebih sederhana dari yang kamu bayangkan. Anggap saja seperti
+              membuat resep untuk komputer.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-10 items-center">
+            <div
+              class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 animate-on-scroll animate-delay-2"
+            >
+              <div class="flex items-center mb-4">
+                <span class="text-4xl mr-4">🍳</span>
+                <h3 class="text-2xl font-bold">Resep Kue</h3>
+              </div>
+              <p class="mb-4">
+                Resep memberitahu kita langkah-langkah pasti untuk membuat kue
+                yang lezat. Jika satu langkah salah, kuenya bisa gagal!
+              </p>
+              <ul
+                class="list-disc list-inside space-y-2 text-left bg-gray-50 p-4 rounded-lg"
+              >
+                <li>Ambil tepung terigu.</li>
+                <li>Campurkan dengan gula.</li>
+                <li>Aduk hingga rata.</li>
+                <li>Panggang di oven.</li>
+              </ul>
+            </div>
+            <div
+              class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 animate-on-scroll animate-delay-3"
+            >
+              <div class="flex items-center mb-4">
+                <span class="text-4xl mr-4">💻</span>
+                <h3 class="text-2xl font-bold">Kode Program</h3>
+              </div>
+              <p class="mb-4">
+                Kode memberi tahu komputer langkah-langkah pasti untuk
+                menjalankan tugas. Sama seperti resep, setiap perintah harus
+                benar.
+              </p>
+              <div class="code-block p-4 rounded-lg text-left">
+                <span class="text-purple-400">ambil_data</span
+                >('pengguna');<br />
+                <span class="text-purple-400">validasi_input</span>(data);<br />
+                <span class="text-purple-400">tampilkan_hasil</span>();<br />
+                <span class="text-purple-400">selesai</span>();
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="bahasa" class="py-20 px-6 bg-white animate-on-scroll">
+        <div class="container mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">
+              Berbicara dengan Komputer
+            </h2>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Komputer punya banyak bahasa, sama seperti manusia. Setiap bahasa
+              punya kegunaan masing-masing.
+            </p>
+          </div>
+          <div class="max-w-2xl mx-auto">
+            <div
+              class="flex justify-center border-b-2 border-gray-200 mb-6 animate-on-scroll animate-delay-2"
+            >
+              <button
+                class="tab-btn flex-1 py-3 px-4 text-lg font-semibold transition duration-300 active"
+                data-tab="python"
+              >
+                Python
+              </button>
+              <button
+                class="tab-btn flex-1 py-3 px-4 text-lg font-semibold transition duration-300"
+                data-tab="javascript"
+              >
+                JavaScript
+              </button>
+              <button
+                class="tab-btn flex-1 py-3 px-4 text-lg font-semibold transition duration-300"
+                data-tab="java"
+              >
+                Java
+              </button>
+            </div>
+            <div
+              id="tab-content"
+              class="text-center p-6 bg-gray-50 rounded-lg animate-on-scroll animate-delay-3"
+            >
+              <div id="python-content" class="tab-pane">
+                <h3 class="text-2xl font-bold mb-2 accent-color">Python</h3>
+                <p>
+                  Bahasa yang sangat ramah untuk pemula, seperti belajar bahasa
+                  Inggris yang sederhana. Sering digunakan untuk kecerdasan
+                  buatan (AI) dan analisis data.
+                </p>
+              </div>
+              <div id="javascript-content" class="tab-pane hidden">
+                <h3 class="text-2xl font-bold mb-2 accent-color">JavaScript</h3>
+                <p>
+                  Inilah yang membuat website menjadi hidup! Semua animasi,
+                  tombol interaktif, dan pop-up di web biasanya dibuat dengan
+                  bahasa ini.
+                </p>
+              </div>
+              <div id="java-content" class="tab-pane hidden">
+                <h3 class="text-2xl font-bold mb-2 accent-color">Java</h3>
+                <p>
+                  Bahasa yang sangat populer untuk membuat aplikasi di HP
+                  Android yang kamu gunakan setiap hari. Sangat kuat dan
+                  serbaguna.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="coba-kode" class="py-20 px-6 animate-on-scroll">
+        <div class="container mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">
+              Ayo Tulis Kode Pertamamu!
+            </h2>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Kita akan memberi perintah pada komputer untuk menyapa dunia. Coba
+              klik tombol "Jalankan Kode"!
+            </p>
+          </div>
+          <div
+            class="max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 animate-on-scroll animate-delay-2"
+          >
+            <div class="p-4 bg-gray-100 text-gray-500 text-sm">
+              Editor Kode Sederhana
+            </div>
+            <div class="p-6">
+              <div class="code-block p-4 rounded-lg">
+                <span class="text-yellow-300">print</span>(<span
+                  class="text-green-300"
+                  >"Halo, dunia!"</span
+                >)
+              </div>
+            </div>
+            <div class="p-4 text-center">
+              <button
+                id="run-code-btn"
+                class="bg-accent-color text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-105"
+              >
+                Jalankan Kode
+              </button>
+            </div>
+            <div class="p-4 bg-gray-100 text-gray-500 text-sm">
+              Hasil (Output):
+            </div>
+            <div id="output" class="output-block p-4"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contoh" class="py-20 px-6 bg-white animate-on-scroll">
+        <div class="container mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">
+              Pemrograman Ada di Sekitar Kita
+            </h2>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Tanpa kita sadari, kode program bekerja di balik layar dalam
+              banyak hal yang kita gunakan setiap hari.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div
+              class="example-card text-center bg-gray-50 p-6 rounded-xl cursor-pointer transition transform hover:-translate-y-2 animate-on-scroll animate-delay-1"
+              data-target="card1"
+            >
+              <span class="text-6xl">📱</span>
+              <h3 class="text-xl font-bold mt-4">Aplikasi HP</h3>
+              <p id="card1" class="details text-gray-600 mt-2">
+                Setiap aplikasi, dari media sosial hingga kalkulator, berjalan
+                karena ada ribuan baris kode yang memberinya perintah.
+              </p>
+            </div>
+            <div
+              class="example-card text-center bg-gray-50 p-6 rounded-xl cursor-pointer transition transform hover:-translate-y-2 animate-on-scroll animate-delay-2"
+              data-target="card2"
+            >
+              <span class="text-6xl">🎮</span>
+              <h3 class="text-xl font-bold mt-4">Video Game</h3>
+              <p id="card2" class="details text-gray-600 mt-2">
+                Aturan main, gerakan karakter, dan skor, semuanya diatur oleh
+                logika yang ditulis dalam kode oleh para game developer.
+              </p>
+            </div>
+            <div
+              class="example-card text-center bg-gray-50 p-6 rounded-xl cursor-pointer transition transform hover:-translate-y-2 animate-on-scroll animate-delay-3"
+              data-target="card3"
+            >
+              <span class="text-6xl">🤖</span>
+              <h3 class="text-xl font-bold mt-4">Robot</h3>
+              <p id="card3" class="details text-gray-600 mt-2">
+                Robot di pabrik atau robot pembersih lantai di rumah bisa
+                bergerak dan melakukan tugas karena mengikuti instruksi dari
+                program.
+              </p>
+            </div>
+            <div
+              class="example-card text-center bg-gray-50 p-6 rounded-xl cursor-pointer transition transform hover:-translate-y-2 animate-on-scroll animate-delay-4"
+              data-target="card4"
+            >
+              <span class="text-6xl">🚦</span>
+              <h3 class="text-xl font-bold mt-4">Lampu Lalin</h3>
+              <p id="card4" class="details text-gray-600 mt-2">
+                Waktu kapan lampu harus merah, kuning, atau hijau diatur secara
+                otomatis oleh sebuah program komputer sederhana.
+              </p>
+            </div>
+          </div>
+          <p
+            class="text-center mt-8 text-gray-500 animate-on-scroll animate-delay-5"
+          >
+            Klik setiap kotak untuk melihat penjelasannya!
+          </p>
+        </div>
+      </section>
+
+      <section id="why-learn" class="py-20 px-6 animate-on-scroll">
+        <div class="container mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-bold">
+            Kenapa Belajar Kode Itu Keren?
+          </h2>
+          <div class="grid md:grid-cols-3 gap-10 mt-12 max-w-4xl mx-auto">
+            <div class="p-6 animate-on-scroll animate-delay-1">
+              <span class="text-5xl">💡</span>
+              <h3 class="text-xl font-semibold mt-4">Mengasah Kreativitas</h3>
+              <p class="mt-2 text-gray-600">
+                Kamu bisa membuat apapun yang kamu bayangkan, dari website
+                pribadi hingga game sederhana.
+              </p>
+            </div>
+            <div class="p-6 animate-on-scroll animate-delay-2">
+              <span class="text-5xl">🧠</span>
+              <h3 class="text-xl font-semibold mt-4">Melatih Logika</h3>
+              <p class="mt-2 text-gray-600">
+                Pemrograman melatihmu memecahkan masalah besar menjadi
+                langkah-langkah kecil yang logis.
+              </p>
+            </div>
+            <div class="p-6 animate-on-scroll animate-delay-3">
+              <span class="text-5xl">🚀</span>
+              <h3 class="text-xl font-semibold mt-4">
+                Keterampilan Masa Depan
+              </h3>
+              <p class="mt-2 text-gray-600">
+                Di dunia yang serba digital, kemampuan ini sangat berharga dan
+                membuka banyak peluang.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 text-center">
+      <div class="container mx-auto">
+        <p>&copy; 2025 Petualangan Dunia Kode. Waktunya mulai berkarya!</p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const tabs = document.querySelectorAll(".tab-btn");
+        const tabPanes = document.querySelectorAll(".tab-pane");
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            tabs.forEach((item) => item.classList.remove("active"));
+            tab.classList.add("active");
+
+            const target = tab.getAttribute("data-tab");
+
+            tabPanes.forEach((pane) => {
+              if (pane.id === `${target}-content`) {
+                pane.classList.remove("hidden");
+              } else {
+                pane.classList.add("hidden");
+              }
+            });
+          });
+        });
+
+        const runCodeBtn = document.getElementById("run-code-btn");
+        const outputDiv = document.getElementById("output");
+        runCodeBtn.addEventListener("click", () => {
+          outputDiv.textContent = "";
+          const textToType = "> Halo, dunia!";
+          let i = 0;
+          function typeWriter() {
+            if (i < textToType.length) {
+              outputDiv.textContent += textToType.charAt(i);
+              i++;
+              setTimeout(typeWriter, 50);
+            }
+          }
+          typeWriter();
+        });
+
+        const exampleCards = document.querySelectorAll(".example-card");
+        exampleCards.forEach((card) => {
+          card.addEventListener("click", () => {
+            card.classList.toggle("open");
+          });
+        });
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          }
+        );
+
+        document.querySelectorAll(".animate-on-scroll").forEach((element) => {
+          observer.observe(element);
+        });
+      });
+    </script>
+  </body>
+</html>
